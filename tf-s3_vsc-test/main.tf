@@ -71,11 +71,7 @@ resource "random_integer" "random_integer" {
   #  }
 }
 
-data "local_file" "read_ip_and_variable" {
-  depends_on = [null_resource.check_ip_and_variable]
-  filename   = "./ip.txt"
-}
 
 output "scalr_ip_with_variables" {
-  value = "Here is new commit, yay! Current IP for sunshine instance is: ${data.local_file.read_ip.content}\nSunshine type is ${element(var.available_types, random_integer.random_index.result)} ${var.my_variable}\nCurrent time is ${timestamp()}\nYou get ${random_integer.random_integer.result} sunshine points.\nHave a great day!"
+  value = "Here is new commit, yay! Sunshine type is ${element(var.available_types, random_integer.random_index.result)} ${var.my_variable}\nCurrent time is ${timestamp()}\nYou get ${random_integer.random_integer.result} sunshine points.\nHave a great day!"
 }
